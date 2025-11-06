@@ -17,7 +17,6 @@ st.set_page_config(
 # -------------------------------
 # ✅ Background Styling (Online Image)
 # -------------------------------
-# Beautiful farmland image from Unsplash
 background_image_url = "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1950&q=80"
 
 page_bg = f"""
@@ -57,7 +56,6 @@ input, textarea, select {{
 }}
 </style>
 """
-
 st.markdown(page_bg, unsafe_allow_html=True)
 
 # -------------------------------
@@ -151,8 +149,16 @@ if st.session_state.logged_in:
         unsafe_allow_html=True
     )
 
-    # Load Dataset
-    df_original = pd.read_csv("your_dataset.csv")
+    # ✅ FIXED DATASET PATH (Works locally & on Streamlit Cloud)
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    DATA_PATH = os.path.join(BASE_DIR, "your_dataset.csv")
+
+    st.write("📂 Loading dataset from:", DATA_PATH)
+    if not os.path.exists(DATA_PATH):
+        st.error(f"❌ Dataset not found at: {DATA_PATH}")
+        st.stop()
+
+    df_original = pd.read_csv(DATA_PATH)
     df_original.columns = df_original.columns.str.strip().str.replace(r"\s+", " ", regex=True)
 
     crop_map = {0: 'Cassava', 1: 'Maize', 2: 'Rice', 3: 'Soybean', 4: 'Yam'}
