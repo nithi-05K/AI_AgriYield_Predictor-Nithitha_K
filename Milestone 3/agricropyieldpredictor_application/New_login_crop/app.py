@@ -152,7 +152,7 @@ if st.session_state.logged_in:
     )
 
     # Load Dataset
-    df_original = pd.read_csv("data/your_dataset.csv")
+    df_original = pd.read_csv("your_dataset.csv")
     df_original.columns = df_original.columns.str.strip().str.replace(r"\s+", " ", regex=True)
 
     crop_map = {0: 'Cassava', 1: 'Maize', 2: 'Rice', 3: 'Soybean', 4: 'Yam'}
