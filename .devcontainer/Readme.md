@@ -99,4 +99,4 @@ AI_AgriYield_Predictor-Nithitha_K/
 ├─ README.md
 ├─ requirements.txt
 
-Acess this application here : https://1234crop.streamlit.app/
+Acess this application here : https://aiagriyieldpredictor-nithithak-co5n3w6pltkldts54smrck.streamlit.app/
