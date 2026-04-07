@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import hashlib
 import os
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 import joblib
 
 # -------------------------------
@@ -208,8 +210,8 @@ if st.session_state.logged_in:
         if not row_match.empty:
             pred_label = row_match['Crop Yield'].values[0]
         else:
-            scaler = joblib.load("crop_yield_scaler.pkl")
-            model = joblib.load("crop_yield_model.pkl")
+            scaler = joblib.load(os.path.join(BASE_DIR, "crop_yield_scaler.pkl"))
+            model = joblib.load(os.path.join(BASE_DIR, "crop_yield_model.pkl"))      
             input_df = pd.DataFrame([[rainfall, temperature, humidity, soil_pH, soil_moisture,
                                       nitrogen, phosphorus, potassium, crop_name_to_num[selected_crop]]],
                                     columns=['Rainfall','Temperature','Humidity','Soil pH','Soil Moisture',
